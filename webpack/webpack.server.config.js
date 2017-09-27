@@ -40,6 +40,7 @@ const developmentConfig = () => {
       },
     },
     parts.readCSS(),
+    parts.lintJS(),
   ]);
 
   return devConfig;

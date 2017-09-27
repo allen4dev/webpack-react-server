@@ -23,7 +23,7 @@ app.get('*', (req, res) => {
   const html = renderToString(
     <StaticRouter location={req.url} context={context}>
       <App />
-    </StaticRouter>
+    </StaticRouter>,
   );
 
   res.setHeader('Content-Type', 'text/html');
@@ -41,13 +41,13 @@ app.get('*', (req, res) => {
       html,
       domain,
       title: 'React Server Render',
-    })
+    }),
   );
 });
 
 const server = http.createServer(app);
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log('🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔');
   console.log(`Server running in port: ${PORT}`);
   console.log('🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔🍔');

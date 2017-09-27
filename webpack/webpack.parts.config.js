@@ -27,17 +27,20 @@ exports.loadImages = options => ({
   },
 });
 
-exports.readCSS = () => ({
+exports.lintJS = () => ({
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: ['css-loader'],
+        test: /\.jsx?$/,
+        use: 'eslint-loader',
+        enforce: 'pre',
+        exclude: /node_modules/,
       },
     ],
   },
 });
 
+// Client
 exports.extractCSS = () => ({
   module: {
     rules: [
@@ -68,6 +71,17 @@ exports.transformHTML = () => ({
       {
         test: /\.html$/,
         use: 'template-string-loader',
+      },
+    ],
+  },
+});
+
+exports.readCSS = () => ({
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['css-loader'],
       },
     ],
   },
