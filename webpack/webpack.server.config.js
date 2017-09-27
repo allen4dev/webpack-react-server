@@ -24,6 +24,7 @@ const commonConfig = () => {
         extensions: ['.js', '.jsx', 'json'],
       },
     },
+    parts.transformHTML(),
     parts.babelTranspile(),
   ]);
 

@@ -9,6 +9,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <h1 className="App-title">Now using template-string-loader</h1>
         <nav className="App-nav">
           <Link to="/">Go to Home</Link>
           <Link to="/about">Go to About</Link>

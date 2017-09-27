@@ -3232,6 +3232,10 @@ tar@^2.2.1:
     fstream "^1.0.2"
     inherits "2"
 
+template-string-loader@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/template-string-loader/-/template-string-loader-0.0.3.tgz#d50c288c1e02ee820da7e988564ec250091c2894"
+
 term-size@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/term-size/-/term-size-1.2.0.tgz#458b83887f288fc56d6fffbfad262e26638efa69"
