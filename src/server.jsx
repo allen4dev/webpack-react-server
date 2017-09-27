@@ -2,6 +2,7 @@ import http from 'http';
 
 import express from 'express';
 import React from 'react';
+import { StaticRouter } from 'react-router-dom';
 
 import { renderToString } from 'react-dom/server';
 
@@ -17,9 +18,22 @@ app.get('/some/endpoint', (req, res) => {
 });
 
 app.get('*', (req, res) => {
-  const html = renderToString(<App />);
+  const context = {};
+  const html = renderToString(
+    <StaticRouter location={req.url} context={context}>
+      <App />
+    </StaticRouter>
+  );
 
   res.setHeader('Content-Type', 'text/html');
+
+  if (context.url) {
+    res.writeHead(301, {
+      Location: context.url,
+    });
+
+    res.end();
+  }
 
   const template = `<!DOCTYPE html>
   <html lang="en">
