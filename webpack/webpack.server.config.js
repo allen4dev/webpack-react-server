@@ -24,14 +24,23 @@ const commonConfig = () => {
         extensions: ['.js', '.jsx', 'json'],
       },
     },
-    parts.transformHTML(),
     parts.babelTranspile(),
+    parts.transformHTML(),
+    parts.loadImages({ limit: 20000, emitFile: false }),
   ]);
 
   return common;
 };
 
-const developmentConfig = () => {};
+const developmentConfig = () => {
+  const devConfig = {
+    output: {
+      publicPath: 'http://localhost:3001/',
+    },
+  };
+
+  return devConfig;
+};
 const productionConfig = () => {};
 
 module.exports = function clientConfig(env) {

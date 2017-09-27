@@ -11,6 +11,20 @@ exports.babelTranspile = () => ({
   },
 });
 
+exports.loadImages = options => ({
+  module: {
+    rules: [
+      {
+        test: /\.(jpe?g|png|gif|svg)$/,
+        use: {
+          loader: 'url-loader',
+          options,
+        },
+      },
+    ],
+  },
+});
+
 // Server
 exports.transformHTML = () => ({
   module: {

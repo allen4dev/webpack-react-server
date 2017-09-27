@@ -25,18 +25,33 @@ const commonConfig = () => {
       },
     },
     parts.babelTranspile(),
+    parts.loadImages({ limit: 20000 }),
   ]);
 
   return common;
 };
 
-const developmentConfig = () => {};
+const developmentConfig = () => {
+  const devConfig = {
+    output: {
+      publicPath: 'http://localhost:3001/',
+    },
+  };
+
+  return devConfig;
+};
+
 const productionConfig = () => {};
 
 module.exports = function clientConfig(env) {
+  let config;
   if (env === 'production') {
-    return merge(commonConfig(), productionConfig());
+    config = merge(commonConfig(), productionConfig());
+    console.log('PROD CONFIG', config);
+    return config;
   }
 
-  return merge(commonConfig(), developmentConfig());
+  config = merge(commonConfig(), developmentConfig());
+  console.log('DEV CONFIG', JSON.stringify(config, undefined, 2));
+  return config;
 };
