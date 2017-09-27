@@ -4,7 +4,7 @@ const merge = require('webpack-merge');
 const parts = require('./webpack.parts.config');
 
 const PATHS = {
-  client: resolve('src', 'client.js'),
+  client: resolve('src', 'client.jsx'),
   output: resolve('dist', 'statics'),
 };
 

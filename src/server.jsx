@@ -1,14 +1,25 @@
 import http from 'http';
 
 import express from 'express';
+import React from 'react';
+
+import { renderToString } from 'react-dom/server';
+
+import App from './App';
 
 const PORT = process.env.PORT || 3000;
 const app = express();
 
 const domain = 'http://localhost:3001';
 
-app.get('/', (req, res) => {
-  const html = '<h1>Server Render</h1>';
+app.get('/some/endpoint', (req, res) => {
+  res.send('Some callback redirect or api');
+});
+
+app.get('*', (req, res) => {
+  const html = renderToString(<App />);
+
+  res.setHeader('Content-Type', 'text/html');
 
   const template = `<!DOCTYPE html>
   <html lang="en">
