@@ -1,6 +1,6 @@
-const http = require('http');
+import http from 'http';
 
-const express = require('express');
+import express from 'express';
 
 const PORT = process.env.PORT || 3000;
 const app = express();
