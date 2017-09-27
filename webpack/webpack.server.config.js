@@ -1,32 +1,42 @@
 const { resolve } = require('path');
+const merge = require('webpack-merge');
+
+const parts = require('./webpack.parts.config');
 
 const PATHS = {
   index: resolve('src', 'server.js'),
   output: resolve('dist', 'server'),
 };
 
-const config = {
-  context: resolve(__dirname, '..'),
-  entry: {
-    index: PATHS.index,
-  },
-  output: {
-    filename: '[name].js',
-    path: PATHS.output,
-  },
-  module: {
-    rules: [
-      {
-        test: /\.jsx?$/,
-        use: 'babel-loader',
-        exclude: /node_modules/,
+const commonConfig = () => {
+  const common = merge([
+    {
+      context: resolve(__dirname, '..'),
+      entry: {
+        index: PATHS.index,
       },
-    ],
-  },
-  target: 'node',
-  resolve: {
-    extensions: ['.js', '.jsx', 'json'],
-  },
+      output: {
+        filename: '[name].js',
+        path: PATHS.output,
+      },
+      target: 'node',
+      resolve: {
+        extensions: ['.js', '.jsx', 'json'],
+      },
+    },
+    parts.babelTranspile(),
+  ]);
+
+  return common;
 };
 
-module.exports = config;
+const developmentConfig = () => {};
+const productionConfig = () => {};
+
+module.exports = function clientConfig(env) {
+  if (env === 'production') {
+    return merge(commonConfig(), productionConfig());
+  }
+
+  return merge(commonConfig(), developmentConfig());
+};
