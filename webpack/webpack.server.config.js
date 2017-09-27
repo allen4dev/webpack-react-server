@@ -33,11 +33,14 @@ const commonConfig = () => {
 };
 
 const developmentConfig = () => {
-  const devConfig = {
-    output: {
-      publicPath: 'http://localhost:3001/',
+  const devConfig = merge([
+    {
+      output: {
+        publicPath: 'http://localhost:3001/',
+      },
     },
-  };
+    parts.readCSS(),
+  ]);
 
   return devConfig;
 };

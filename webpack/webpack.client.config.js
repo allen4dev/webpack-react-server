@@ -1,5 +1,6 @@
 const { resolve } = require('path');
 const merge = require('webpack-merge');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const parts = require('./webpack.parts.config');
 
@@ -32,11 +33,14 @@ const commonConfig = () => {
 };
 
 const developmentConfig = () => {
-  const devConfig = {
-    output: {
-      publicPath: 'http://localhost:3001/',
+  const devConfig = merge([
+    {
+      output: {
+        publicPath: 'http://localhost:3001/',
+      },
     },
-  };
+    parts.extractCSS(),
+  ]);
 
   return devConfig;
 };
@@ -47,11 +51,11 @@ module.exports = function clientConfig(env) {
   let config;
   if (env === 'production') {
     config = merge(commonConfig(), productionConfig());
-    console.log('PROD CONFIG', config);
+    // console.log('PROD CONFIG', config);
     return config;
   }
 
   config = merge(commonConfig(), developmentConfig());
-  console.log('DEV CONFIG', JSON.stringify(config, undefined, 2));
+  // console.log('DEV CONFIG', JSON.stringify(config, undefined, 2));
   return config;
 };
