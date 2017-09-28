@@ -1,14 +1,18 @@
 const { resolve } = require('path');
 const merge = require('webpack-merge');
-
 const parts = require('./webpack.parts.config');
 
 const PATHS = {
   index: resolve('src', 'server.jsx'),
   output: resolve('dist', 'server'),
+  cleanRoot: resolve('dist'),
 };
 
 const commonConfig = () => {
+  const cleanOptions = {
+    root: PATHS.cleanRoot,
+  };
+
   const common = merge([
     {
       context: resolve(__dirname, '..'),
@@ -24,6 +28,7 @@ const commonConfig = () => {
         extensions: ['.js', '.jsx', 'json'],
       },
     },
+    parts.cleanDist({ name: 'server', options: cleanOptions }),
     parts.babelTranspile(),
     parts.transformHTML(),
     parts.loadImages({ limit: 20000, emitFile: false }),

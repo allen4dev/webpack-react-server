@@ -1,4 +1,5 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 // Common
 exports.babelTranspile = () => ({
@@ -62,6 +63,10 @@ exports.extractCSS = () => ({
       filename: 'app.css',
     }),
   ],
+});
+
+exports.cleanDist = ({ name, options }) => ({
+  plugins: [new CleanWebpackPlugin(name, options)],
 });
 
 // Server

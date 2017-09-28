@@ -1,15 +1,19 @@
 const { resolve } = require('path');
 const merge = require('webpack-merge');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const parts = require('./webpack.parts.config');
 
 const PATHS = {
   client: resolve('src', 'client.jsx'),
   output: resolve('dist', 'statics'),
+  cleanRoot: resolve('dist'),
 };
 
 const commonConfig = () => {
+  const cleanOptions = {
+    root: PATHS.cleanRoot,
+  };
+
   const common = merge([
     {
       context: resolve(__dirname, '..'),
@@ -25,6 +29,7 @@ const commonConfig = () => {
         extensions: ['.js', '.jsx', 'json'],
       },
     },
+    parts.cleanDist({ name: 'statics', options: cleanOptions }),
     parts.babelTranspile(),
     parts.loadImages({ limit: 20000 }),
   ]);
