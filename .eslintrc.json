@@ -1,6 +1,6 @@
 {
-  "extends": ["airbnb"],
-  "plugins": ["import", "jsx-a11y", "react"],
+  "extends": ["airbnb", "prettier", "prettier/react"],
+  "plugins": ["import", "jsx-a11y", "react", "prettier"],
   "env": {
     "es6": true,
     "browser": true,
