@@ -32,6 +32,8 @@ const commonConfig = () => {
     parts.babelTranspile(),
     parts.transformHTML(),
     parts.loadImages({ limit: 20000, emitFile: false }),
+    parts.readCSS(),
+    parts.lintJS(),
   ]);
 
   return common;
@@ -44,8 +46,6 @@ const developmentConfig = () => {
         publicPath: 'http://localhost:3001/',
       },
     },
-    parts.readCSS(),
-    parts.lintJS(),
   ]);
 
   return devConfig;

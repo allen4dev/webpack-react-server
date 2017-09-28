@@ -41,6 +41,18 @@ exports.lintJS = () => ({
   },
 });
 
+// Development
+exports.injectCSS = () => ({
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
+});
+
 // Client
 exports.extractCSS = () => ({
   module: {

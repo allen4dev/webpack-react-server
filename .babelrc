@@ -6,11 +6,12 @@
         "targets": {
           "browsers": "last 2 versions",
           "node": "current"
-        }
+        },
+        "modules": false
       }
     ],
     "flow",
     "react"
   ],
-  "plugins": ["transform-class-properties"]
+  "plugins": ["react-hot-loader/babel", "transform-class-properties"]
 }

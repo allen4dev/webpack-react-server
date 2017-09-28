@@ -32,6 +32,8 @@ const commonConfig = () => {
     parts.cleanDist({ name: 'statics', options: cleanOptions }),
     parts.babelTranspile(),
     parts.loadImages({ limit: 20000 }),
+    parts.extractCSS(),
+    parts.lintJS(),
   ]);
 
   return common;
@@ -44,8 +46,6 @@ const developmentConfig = () => {
         publicPath: 'http://localhost:3001/',
       },
     },
-    parts.extractCSS(),
-    parts.lintJS(),
   ]);
 
   return devConfig;

@@ -4,9 +4,18 @@ import { BrowserRouter } from 'react-router-dom';
 
 import App from './App';
 
-render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
-  document.getElementById('app'),
-);
+const renderApp = () => {
+  render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>,
+    document.getElementById('app'),
+  );
+};
+renderApp();
+
+if (module.hot) {
+  module.hot.accept('./App', () => {
+    renderApp();
+  });
+}
