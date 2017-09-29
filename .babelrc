@@ -13,5 +13,10 @@
     "flow",
     "react"
   ],
-  "plugins": ["react-hot-loader/babel", "transform-class-properties"]
+  "plugins": ["react-hot-loader/babel", "transform-class-properties"],
+  "env": {
+    "test": {
+      "plugins": ["transform-es2015-modules-commonjs"]
+    }
+  }
 }
